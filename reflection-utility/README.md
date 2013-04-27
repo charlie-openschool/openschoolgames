@@ -12,9 +12,29 @@ This ability can be very useful during testing. For example we might enumerate s
         this.encoding = encoding;
       }
       
-      public String getEncoding(){
+      public String getEncoding() {
         return this.encoding;
       }
     }
 
+	
+With the ENCODINGS enum we can be sure that we only use valid encodings. The enum works better than static strings because we can enforce its use in method signitures.
+
+    public static String encode(String str, ENCODINGS encoding){
+      String encoded = null;
+      try {	  
+        encoded = URLEncoder.encode(str, encoding.getEncoding());
+      } catch (UnsupportedEncodingException e){
+	    throw new RuntimeException(e); 
+	  }
+      return encoded;
+    }	  
+
+Now we can write cleaner code when we need to use URLEncoder. We no longer need to catch a checked exception and we can be reasonably certain that we will never get a runtime exception, however, it would be nice to be able to force the code into the exception condition duuring testing.
+
+    EnumModifier.addEnumValue(ENCODINGS.class, "invalidType", "invalidValue");
+	ENCODINGS[] modifiedEnums = ENCODINGS.values();
+    String encoded = encode("can we encode this?", modifiedEnums[2]); 
+
+Notice how we used a list to access our new value? Does it make sense that we cannot just use ENCODINGS.invalidType ? 	
 	
