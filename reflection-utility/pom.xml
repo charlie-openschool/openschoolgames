@@ -8,8 +8,32 @@
   <packaging>jar</packaging>
 
   <name>Java Reflection Utility</name>
+  <description>Provides convenience methods for Java reflection.</description>
   <url>http://www.openschoolgames.com</url>
-
+  <licenses>
+    <license>
+      <name>Common Public License Version 1.0</name>
+      <url>http://opensource.org/licenses/cpl1.0.txt</url>
+    </license>
+</licenses>
+  <developers>
+    <developer>
+      <id>charlie</id>
+      <name>Charlie Wallace</name>
+      <email>charlie</email>
+      <url>http://openschoolgames.com/charlie</url>
+      <organization>Open School Games</organization>
+      <organizationUrl>http://openschoolgames.com</organizationUrl>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+      <timezone>-6</timezone>
+      <properties>
+        <picUrl>http://openschoolgames.com/charlie/charlie.jpg</picUrl>
+      </properties>
+    </developer>
+  </developers>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -18,4 +42,22 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <archive>
+            <index>true</index>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+            </manifest>
+          </archive>
+        </configuration>    
+      </plugin>
+    </plugins>
+  </build>
 </project>
