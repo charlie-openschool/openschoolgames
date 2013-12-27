@@ -1,0 +1,16 @@
+# compile strings static lib 
+gcc -Wall -c strings.c -I./includes
+
+# move the strings.o file into an archive
+ar -cvq libstrings.a strings.o
+
+# compile testasserts static lib
+gcc -Wall -c testasserts.c -I./includes
+
+# move the testasserts.o file into an archive
+ar -cvq libtestasserts.a testasserts.o
+
+# change directory out to the parent directory
+cd ..
+# compile the stringstests program that links to both static libs
+gcc -o stringstests stringstests.c -I./includes -L./libs -ltestasserts -lstrings
