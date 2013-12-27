@@ -1,1 +1,1 @@
-Utilities for maintaining the OpenSchoolGames website.
+Sample code and utilities for maintaining the OpenSchoolGames website.
