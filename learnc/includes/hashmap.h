@@ -21,6 +21,6 @@ void linkedListRemove(Node * head, Node * node);
 void linkedListRemoveByKey(Node * head, char * key);
 Node * linkedListAdd(Node * head, char * key, long * data);
 Node * linkedListGet(Node * head, char * key);
-void hashMapInit(HashMap* hashMap, int primeModulus);
+HashMap * hashMapCreate(int primeModulus);
 void hashMapPut(HashMap* hashMap, char * key, long value);
 long * hashMapGet(HashMap* hashMap, char * key);

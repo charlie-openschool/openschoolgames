@@ -86,11 +86,13 @@ Node * linkedListAdd(Node * head, char * key, long * data)
   return current->next;
 }
 
-void hashMapInit(HashMap* hashMap, int primeModulus)
+HashMap * hashMapCreate(int primeModulus)
 {
+  HashMap * hashMap = (HashMap *)malloc(sizeof(HashMap));
   hashMap->primeModulus = primeModulus;
   hashMap->data = (long*)malloc(sizeof(long*) * primeModulus);
   memset(hashMap->data, 0, sizeof(long*) * primeModulus);
+  return hashMap;
 }
 
 void hashMapPut(HashMap* hashMap, char * key, long value)

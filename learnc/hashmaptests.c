@@ -7,17 +7,42 @@
 
 void testHashMapOneValue()
 {
-  HashMap * map = (HashMap *)malloc(sizeof(HashMap));
-  hashMapInit(map, 101);;
+  HashMap * map = hashMapCreate(101);
   hashMapPut(map, "Hello", 1000);
   long * p = hashMapGet(map, "Hello");
-  assertIntEquals("testHashMap", 1000, *p);
+  assertIntEquals("testHashMapOneValue", 1000, *p);
+  
+  int total = 0;
+  int i = 0;
+  while (i < 11)
+  {
+    if (*map->data > 0)
+	{
+      total += 1;
+	}
+	map->data += 1;
+	i++;
+  }
+  assertIntEquals("testHashMapOneValue data count", 0, total);
+}
+
+void testHashMapCreate()
+{
+  HashMap * map = hashMapCreate(11);
+  int total = 0;
+  int i = 0;
+  while (i < 11)
+  {
+    total += *map->data;
+	map->data += 1;
+	i++;
+  }
+  assertIntEquals("testHashMapCreate", 0, total);
 }
 
 void testHashMapSixValues()
 {
-  HashMap * map = (HashMap *)malloc(sizeof(HashMap));
-  hashMapInit(map, 101);
+  HashMap * map = hashMapCreate(101);
   hashMapPut(map, "Hello", 1000);
   hashMapPut(map, "hello", 1001);
   hashMapPut(map, "world", 1002);
@@ -132,7 +157,7 @@ void testLinkedListRemoveByKey()
 
 void main(int argc, char* argv[])
 {
-  int numberOfTests = 6;
+  int numberOfTests = 7;
   void (*tests[numberOfTests])(void);
   tests[0] = testHashMapOneValue;
   tests[1] = testHashMapSixValues;
@@ -140,8 +165,8 @@ void main(int argc, char* argv[])
   tests[3] = testLinkedListInsert;
   tests[4] = testLinkedListRemoveByKey;
   tests[5] = testLinkedListRemove;
-/*  tests[6] = testLength;
-  tests[7] = testLengthNull;
+  tests[6] = testHashMapCreate;
+/*  tests[7] = testLengthNull;
   tests[8] = testStringConcat;
   tests[9] = testEchoStrings;
   tests[10]= testSplit;
@@ -157,8 +182,7 @@ void main(int argc, char* argv[])
 
 return;
 
-  HashMap * map = (HashMap *)malloc(sizeof(HashMap));
-  hashMapInit(map, 101);  
+  HashMap * map = hashMapCreate(101);  
   i = 0;
   char * keys = (char *)malloc(sizeof(char) * 1001 * 5);
   char * kp = keys;
