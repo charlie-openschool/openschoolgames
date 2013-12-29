@@ -4,6 +4,39 @@
 #include <testasserts.h>
 #include <constants.h>
 #include <strings.h>
+#include <time.h>
+#include <stdlib.h>
+
+int randomInitialized = 0;
+char * getRandomString(int length)
+{
+   if (randomInitialized < 1)
+   {
+     srand(time(NULL));
+	 randomInitialized = 1;
+   }
+   int i = 0;
+   char * s = (char *)malloc(sizeof(char) * length);
+   char * p = s;
+   while (i < (length - 1))
+   {
+     i++;
+     int cap = rand()%2;
+     int offset = rand()%25;
+	 if (cap > 0)
+	 {
+	   *p = 'a' + offset; 
+	 }
+	 else
+	 {
+	   *p = 'A' + offset;
+	 }
+	 p++;
+  }
+  *p = '\0';
+    
+  return s;
+}
 
 /**
  * length not including null terminator 

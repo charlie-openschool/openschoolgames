@@ -1,3 +1,4 @@
+char * getRandomString(int length);
 char * clone(char * s);
 void inspect(char * s, int len);
 int length(char * s);
