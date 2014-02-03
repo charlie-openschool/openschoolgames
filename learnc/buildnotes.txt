@@ -15,3 +15,10 @@ ar -rvc libtestasserts.a testasserts.o
 cd ..
 # compile the stringstests program that links to both static libs
 gcc -o stringstests stringstests.c -I./includes -L./libs -ltestasserts -lstrings
+
+
+# compile all static libs
+gcc -c *.c -I../includes
+
+# move all .o files into one static lib called learnc
+ar -rvc liblearnc.a *.o

@@ -4,52 +4,38 @@
 #include <stdio.h>
 #include <strings.h>
 #include <testasserts.h>
+#include <linkedlist.h>
 
 void testHashMapOneValue()
 {
-  HashMap * map = hashMapCreate(101);
-  hashMapPut(map, "Hello", 1000);
-  long * p = hashMapGet(map, "Hello");
-  assertIntEquals("testHashMapOneValue", 1000, *p);
-  
-  int total = 0;
-  int i = 0;
-  while (i < 11)
-  {
-    if (*map->data > 0)
-	{
-      total += 1;
-	}
-	map->data += 1;
-	i++;
-  }
-  assertIntEquals("testHashMapOneValue data count", 0, total);
-}
-
-void testHashMapCreate()
-{
   HashMap * map = hashMapCreate(11);
-  int total = 0;
-  int i = 0;
-  while (i < 11)
-  {
-    total += *map->data;
-	map->data += 1;
-	i++;
-  }
-  assertIntEquals("testHashMapCreate", 0, total);
+  long value = 1999;
+  hashMapPut(map, "Hello", &value);
+  long * p = hashMapGet(map, "Hello");
+  assertIntEquals("testHashMapOneValue", 1999, *p);
 }
 
 void testHashMapSixValues()
 {
-  HashMap * map = hashMapCreate(101);
-  hashMapPut(map, "Hello", 1000);
-  hashMapPut(map, "hello", 1001);
-  hashMapPut(map, "world", 1002);
-  hashMapPut(map, "World", 1003);
-  hashMapPut(map, "good", 1004);
-  hashMapPut(map, "bye", 1005);
-  long * v = hashMapGet(map, "Hello");
+  long * v = 0;
+  long values[] = {1000, 1001,1002,1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012};
+  char * k1 = "Hello";
+  char * k2 = "hello";
+  char * k3 = "world";
+  char * k4 = "World";
+  char * k5 = "good";
+  char * k6 = "bye";
+  int i = 0;
+  HashMap * map = hashMapCreate(11);
+  hashMapPut(map, k1, &values[i++]);
+  hashMapPut(map, k2, &values[i++]);
+  hashMapPut(map, k3, &values[i++]);
+  hashMapPut(map, k4, &values[i++]);
+  hashMapPut(map, k5, &values[i++]);
+  hashMapPut(map, k6, &values[i++]);
+  
+  v = hashMapGet(map, k1);
+
   assertIntEquals("testHashMap value 1", 1000, *v);
   v = hashMapGet(map, "hello");
   assertIntEquals("testHashMap value 2", 1001, *v);
@@ -63,110 +49,91 @@ void testHashMapSixValues()
   assertIntEquals("testHashMap value 6", 1005, *v);
 }
 
-void testLinkedListInsert()
+
+void testHashMapTwelveValues()
 {
-  long d1 = 2001;
-  long d2 = 2002;
-  long d3 = 2003;
-  long d4 = 2004;
-  Node * head = createLinkedList("d1",&d1);
-  Node * node = linkedListAdd(head, "d2",&d2);
-  linkedListAdd(head, "d4",&d4);
-  linkedListInsert(node, "d3", &d3);
-  node = head;
-  assertIntEquals("testLinkListInsert value 1", 2001,*node->data);
-  node = node->next;  
-  assertIntEquals("testLinkListInsert value 2", 2002,*node->data);
-  node = node->next;  
-  assertIntEquals("testLinkListInsert value 3", 2003,*node->data);
-  node = node->next;  
-  assertIntEquals("testLinkListInsert value 4", 2004,*node->data);
+  long * v = 0;
+  char * k1 = "Hello";
+  char * k2 = "hello";
+  char * k3 = "world";
+  char * k4 = "World";
+  char * k5 = "good";
+  char * k6 = "bye";
+  char * k7 = "a";
+  char * k8 = "b";
+  char * k9 = "c";
+  char * k10 = "d";
+  char * k11 = "e";
+  char * k12 = "f";
+  long values[] = {1000, 1001,1002,1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012}; 
+  int i = 0;
+  HashMap * map = hashMapCreate(11);
+  hashMapPut(map, k1, &values[i++]);
+  hashMapPut(map, k2, &values[i++]);
+  hashMapPut(map, k3, &values[i++]);
+  hashMapPut(map, k4, &values[i++]);
+  hashMapPut(map, k5, &values[i++]);
+  hashMapPut(map, k6, &values[i++]);
+  hashMapPut(map, k7, &values[i++]);
+  hashMapPut(map, k8, &values[i++]);
+  hashMapPut(map, k9, &values[i++]);
+  hashMapPut(map, k10, &values[i++]);
+  hashMapPut(map, k11, &values[i++]);
+  hashMapPut(map, k12, &values[i++]);
+  v = hashMapGet(map, k1);
+  assertIntEquals("testHashMap value 1", 1000, *v);
+  v = hashMapGet(map, k2);
+  assertIntEquals("testHashMap value 2", 1001, *v);
+  v = hashMapGet(map, k3);
+  assertIntEquals("testHashMap value 3", 1002, *v);
+  v = hashMapGet(map, k4);
+  assertIntEquals("testHashMap value 4", 1003, *v);
+  v = hashMapGet(map, k5);
+  assertIntEquals("testHashMap value 5", 1004, *v);
+  v = hashMapGet(map, k6);
+  assertIntEquals("testHashMap value 6", 1005, *v);
+    v = hashMapGet(map, k6);
+  assertIntEquals("testHashMap value 6", 1005, *v);
+    v = hashMapGet(map, k7);
+  assertIntEquals("testHashMap value 7", 1006, *v);
+    v = hashMapGet(map, k8);
+  assertIntEquals("testHashMap value 8", 1007, *v);
+    v = hashMapGet(map, k9);
+  assertIntEquals("testHashMap value 9", 1008, *v);
+    v = hashMapGet(map, k10);
+  assertIntEquals("testHashMap value 10", 1009, *v);
+    v = hashMapGet(map, k11);
+  assertIntEquals("testHashMap value 11", 1010, *v);
+      v = hashMapGet(map, k12);
+  assertIntEquals("testHashMap value 12", 1011, *v);
 }
 
-void testLinkedList()
+void testGetMissingKey()
 {
-  long d1 = 2001;
-  long d2 = 2002;
-  long d3 = 2003;
-  long d4 = 2004;
-  long d5 = 2005;
-  Node * head = createLinkedList("d1",&d1);
-  Node * node = linkedListAdd(head, "d2",&d2);
-  linkedListAdd(head, "d3",&d3);
-  linkedListAdd(head, "d4", &d4);
-  node = head;
-  assertIntEquals("testLinkList value 1", 2001,*node->data);
-  node = node->next;  
-  assertIntEquals("testLinkList value 2", 2002,*node->data);
-  node = node->next;  
-  assertIntEquals("testLinkList value 3", 2003,*node->data);
-  node = node->next;  
-  assertIntEquals("testLinkList value 4", 2004,*node->data);
-  node->next = createLinkedList("d5", &d5);
-  node = node->next;  
-  assertIntEquals("testLinkList value 5", 2005,*node->data);
-}
-
-void testLinkedListRemove()
-{
-  long d1 = 2001;
-  long d2 = 2002;
-  long d3 = 2003;
-  long d4 = 2004;
-  long d5 = 2005;
-  Node * head = createLinkedList("d1",&d1);
-  linkedListAdd(head, "d2",&d2);
-  linkedListAdd(head, "d3",&d3);
-  linkedListAdd(head, "d4", &d4);
-  linkedListAdd(head, "d5", &d5);
-  Node * node = head;
-  
-  linkedListRemove(head, head->next);
-  assertIntEquals("testLinkListRemove value 1", 2001,*node->data);
-  node = node->next;  
-  assertIntEquals("testLinkListRemove value 3", 2003,*node->data);
-  node = node->next;  
-  assertIntEquals("testLinkListRemove value 4", 2004,*node->data);
-  node = node->next;  
-  assertIntEquals("testLinkListRemove value 5", 2005,*node->data);
- }
- 
-void testLinkedListRemoveByKey()
-{
-  long d1 = 2001;
-  long d2 = 2002;
-  long d3 = 2003;
-  long d4 = 2004;
-  long d5 = 2005;
-  Node * head = createLinkedList("d1",&d1);
-  Node * node = linkedListAdd(head, "d2",&d2);
-  linkedListAdd(head, "d3",&d3);
-  linkedListAdd(head, "d4", &d4);
-  linkedListAdd(head, "d5", &d5);
-  linkedListRemoveByKey(head, "d3");
-  linkedListRemoveByKey(head, "d5");
-  node = head;
-  assertIntEquals("testLinkListRemoveByKey value 1", 2001,*node->data);
-  node = node->next;
-  assertIntEquals("testLinkListRemoveByKey value 2", 2002,*node->data);
-  node = node->next;    
-  assertIntEquals("testLinkListRemoveByKey value 4", 2004,*node->data);
-  node = node->next;  
-  assertIntEquals("testLinkListRemoveByKey node null", 0, (int)node);
+  long * v = 0;
+  char * k1 = "Hello";
+  long value = 1000;
+  HashMap * map = hashMapCreate(11);
+  hashMapPut(map, k1, &value);
+  v = hashMapGet(map, "xxx");
+  assertIntEquals("testGetMissingKey", 0, (int)v);
+  v = hashMapGet(map, k1);
+  assertIntEquals("testGetMissingKey", 1000, *v);
 }
 
 void main(int argc, char* argv[])
 {
-  int numberOfTests = 7;
+  int numberOfTests = 4;
   void (*tests[numberOfTests])(void);
   tests[0] = testHashMapOneValue;
   tests[1] = testHashMapSixValues;
-  tests[2] = testLinkedList;
-  tests[3] = testLinkedListInsert;
+  tests[2] = testHashMapTwelveValues;
+  tests[3] = testGetMissingKey;
+/*
   tests[4] = testLinkedListRemoveByKey;
   tests[5] = testLinkedListRemove;
   tests[6] = testHashMapCreate;
-/*  tests[7] = testLengthNull;
+  tests[7] = hashMapDump;
   tests[8] = testStringConcat;
   tests[9] = testEchoStrings;
   tests[10]= testSplit;
@@ -181,7 +148,7 @@ void main(int argc, char* argv[])
   }
 
 return;
-
+/*
   HashMap * map = hashMapCreate(101);  
   i = 0;
   char * keys = (char *)malloc(sizeof(char) * 1001 * 5);
@@ -219,5 +186,5 @@ return;
 	long * pV = hashMapGet(map, key);
 	printf("Map value at %s is %d\n", key, *pV);
 	i++;
-  }
+  }*/
 }
