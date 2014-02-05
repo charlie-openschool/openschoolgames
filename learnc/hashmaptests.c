@@ -108,7 +108,7 @@ void testHashMapTwelveValues()
   assertIntEquals("testHashMap value 12", 1011, *v);
 }
 
-void testGetMissingKey()
+void testHashMapGetMissingKey()
 {
   long * v = 0;
   char * k1 = "Hello";
@@ -116,27 +116,24 @@ void testGetMissingKey()
   HashMap * map = hashMapCreate(11);
   hashMapPut(map, k1, &value);
   v = hashMapGet(map, "xxx");
-  assertIntEquals("testGetMissingKey", 0, (int)v);
+  assertIntEquals("testHashMapGetMissingKey", 0, (int)v);
   v = hashMapGet(map, k1);
-  assertIntEquals("testGetMissingKey", 1000, *v);
+  assertIntEquals("testHashMapGetMissingKey", 1000, *v);
 }
 
 void main(int argc, char* argv[])
 {
-  int numberOfTests = 4;
-  void (*tests[numberOfTests])(void);
-  tests[0] = testHashMapOneValue;
-  tests[1] = testHashMapSixValues;
-  tests[2] = testHashMapTwelveValues;
-  tests[3] = testGetMissingKey;
-
-  int i = 0;
-  while (i < numberOfTests)
+  Node * testNode = linkedListCreate(testHashMapOneValue);
+  linkedListAdd(testNode, testHashMapSixValues);
+  linkedListAdd(testNode, testHashMapTwelveValues);
+  linkedListAdd(testNode, testHashMapGetMissingKey);
+    
+  while (testNode != NULL)
   {
-    tests[i]();
+    ((void (*)(void))testNode->data)();
 	printf("\n");
-	i++;
+    testNode = testNode->next;
   }
-
-return;
+  
+  return;
 }
