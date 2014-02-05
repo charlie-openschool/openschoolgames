@@ -129,16 +129,7 @@ void main(int argc, char* argv[])
   tests[1] = testHashMapSixValues;
   tests[2] = testHashMapTwelveValues;
   tests[3] = testGetMissingKey;
-/*
-  tests[4] = testLinkedListRemoveByKey;
-  tests[5] = testLinkedListRemove;
-  tests[6] = testHashMapCreate;
-  tests[7] = hashMapDump;
-  tests[8] = testStringConcat;
-  tests[9] = testEchoStrings;
-  tests[10]= testSplit;
-  tests[11]= testSplitOneWord;
-  tests[12]= testSplitNull;*/
+
   int i = 0;
   while (i < numberOfTests)
   {
@@ -148,43 +139,4 @@ void main(int argc, char* argv[])
   }
 
 return;
-/*
-  HashMap * map = hashMapCreate(101);  
-  i = 0;
-  char * keys = (char *)malloc(sizeof(char) * 1001 * 5);
-  char * kp = keys;
-  while (i < 1001)
-  {
-    char * key = getRandomString(5);
-	char * t = key;
-	int cnt = 0;
-	while (cnt < 5)
-	{
-	  *kp = *t;
-	  kp++;
-	  t++;
-	  cnt++;
-	}
-	hashMapPut(map, key, 5000 + i);
-	i++;
-  }
-  i = 0;
-  char * tKey = keys;
-  while (i < 1001)
-  {
-    char * key = (char *)malloc(sizeof(char) * 6);
-	char * tK = key;
-	int cnt = 0;
-	while (cnt < 5)
-	{
-	  *tK = *tKey;
-	  tK++;
-	  tKey++;
-	  cnt++;
-	}
-	*tK = '\0';
-	long * pV = hashMapGet(map, key);
-	printf("Map value at %s is %d\n", key, *pV);
-	i++;
-  }*/
 }
