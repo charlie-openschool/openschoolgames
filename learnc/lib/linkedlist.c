@@ -9,7 +9,13 @@ Node * linkedListCreate(void * data)
    head->next = NULL;
    return head; 
 }
-
+/**
+*  linkedListRemove	
+*  Removes node in list that begins at head
+*  Frees memory used by the node structure unless node is the head
+*  Does not free memory used by data
+*  Does not free memory used by head 
+*/
 Node * linkedListRemove(Node * head, Node * node)
 {
   Node * current = head;
@@ -23,6 +29,11 @@ Node * linkedListRemove(Node * head, Node * node)
 	  head->next = t->next;
 	  free(t);
 	  t = NULL;
+	} 
+	else 
+	{
+	  // Not a memory leak. Consumer is responsible for managing data.
+	  head->data = NULL; 
 	}
   }
   else 

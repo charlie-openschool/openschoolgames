@@ -56,8 +56,8 @@ void keyedListRemove(Node * head, char * key)
   if (current != NULL)
   {
     KeyValue * kv = current->data;
-	free(kv);
-	linkedListRemove(head, current);
+    free(kv);
+    linkedListRemove(head, current);
   }
 }
 

@@ -8,3 +8,5 @@ typedef struct HASHMAP
 void * hashMapGet(HashMap* hashMap, char * key);
 HashMap * hashMapCreate(int primeModulus);
 void hashMapPut(HashMap* hashMap, char * key, void * value);
+void hashMapRemove(HashMap* hashMap, char * key);
+void hashMapFree(HashMap* hashMap);

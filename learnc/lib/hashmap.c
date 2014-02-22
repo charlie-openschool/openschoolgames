@@ -12,9 +12,41 @@ HashMap * hashMapCreate(int primeModulus)
 {
   HashMap * hashMap = malloc(sizeof(HashMap));
   hashMap->primeModulus = primeModulus;
-  hashMap->data = malloc(sizeof(Node) * primeModulus);
-  memset((Node*)hashMap->data, 0, sizeof(Node) * primeModulus);
+  hashMap->data = malloc(sizeof(Node*) * primeModulus);
+  memset((Node*)hashMap->data, 0, sizeof(Node*) * primeModulus);
   return hashMap;
+}
+
+
+/**
+   cleans up all memory for the hashMap and the lists that it uses.
+   does not clean up any keys or values as this belong to the user.
+*/
+void hashMapFree(HashMap* hashMap)
+{
+   Node * data = hashMap->data;
+   int index = 0;
+   while (index < hashMap->primeModulus)
+   {
+     Node * node = *((Node * *)((Node *)hashMap->data)+index);
+     if (node != NULL)
+     {
+        while (node != NULL)
+        {
+          KeyValue * kv = node->data;
+          // The memory for both key and value belong to the consumer
+          free(kv);
+          Node * temp = node->next;
+          free(node);
+          node = temp;
+        } 
+     } 
+     index++;
+   }
+   memset((Node*)hashMap->data, 0, sizeof(Node*) * hashMap->primeModulus);
+   free(hashMap->data);
+   hashMap->data = 0;   
+   free(hashMap);
 }
 
 void hashMapPut(HashMap* hashMap, char * key, void * value)
@@ -30,6 +62,15 @@ void hashMapPut(HashMap* hashMap, char * key, void * value)
   }
 }
 
+void hashMapRemove(HashMap* hashMap, char * key)
+{
+  Node * * head = hashMapGetHead(hashMap, key);
+  if (*head != NULL)
+  {
+	keyedListRemove(*head, key);
+  }
+}
+
 Node * * hashMapGetHead(HashMap* hashMap, char * key)
 {  
   long index = stringHash(key, hashMap->primeModulus);
@@ -42,11 +83,18 @@ void * hashMapGet(HashMap* hashMap, char * key)
   while (node != 0)
   {
     KeyValue * kv = node->data;
-    if (strcmp(kv->key, key) == 0)
+    if (kv != NULL)
+    {
+       if (strcmp(kv->key, key) == 0)
 	{
 	  return (long *)kv->value;
 	}
 	node = node->next;
+    } 
+    else
+    {
+      return 0;
+    }
   }  
   return 0;
 }
