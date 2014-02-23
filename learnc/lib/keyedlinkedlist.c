@@ -50,15 +50,16 @@ Node * keyedListCreate(char * key, void * value)
   return linkedListCreate(kv);
 }
 
-void keyedListRemove(Node * head, char * key)
+Node * keyedListRemove(Node * head, char * key)
 {
   Node * current = keyedListGetNode(head, key);
   if (current != NULL)
   {
     KeyValue * kv = current->data;
     free(kv);
-    linkedListRemove(head, current);
+    return linkedListRemove(head, current);
   }
+  return NULL;
 }
 
 Node * keyedListAdd(Node * head, char * key, void * value)

@@ -33,7 +33,9 @@ Node * linkedListRemove(Node * head, Node * node)
 	else 
 	{
 	  // Not a memory leak. Consumer is responsible for managing data.
-	  head->data = NULL; 
+	  head->data = NULL;
+          free(head);
+          previous = NULL; 
 	}
   }
   else 
@@ -50,6 +52,7 @@ Node * linkedListRemove(Node * head, Node * node)
       current = NULL; 
     }
   }
+
   return previous;
 }
 

@@ -16,6 +16,8 @@ void testHashMapOneValue()
 
   // cleanup
   hashMapRemove(map, "Hello");
+  hashMapFree(map);
+  map = NULL;
   
 }
 
@@ -73,14 +75,12 @@ void testHashMapRemoveSixValues()
   hashMapPut(map, k4, &values[i++]);
   hashMapPut(map, k5, &values[i++]);
   hashMapPut(map, k6, &values[i++]);
- 
   hashMapRemove(map, k1);
   hashMapRemove(map, k2);
   hashMapRemove(map, k3);
   hashMapRemove(map, k4);
   hashMapRemove(map, k5);
   hashMapRemove(map, k6);
-
   v = hashMapGet(map, k1);
   assertIntEquals("testHashMapRemoveSixValues value 1", 0, (int)v);
   v = hashMapGet(map, "hello");
@@ -97,8 +97,6 @@ void testHashMapRemoveSixValues()
   hashMapFree(map);
   map = NULL;
 }
-
-
 
 void testHashMapTwelveValues()
 {
@@ -142,21 +140,22 @@ void testHashMapTwelveValues()
   assertIntEquals("testHashMapTwelveValues value 5", 1004, *v);
   v = hashMapGet(map, k6);
   assertIntEquals("testHashMapTwelveValues value 6", 1005, *v);
-    v = hashMapGet(map, k6);
+  v = hashMapGet(map, k6);
   assertIntEquals("testHashMapTwelveValues value 6", 1005, *v);
-    v = hashMapGet(map, k7);
+  v = hashMapGet(map, k7);
   assertIntEquals("testHashMapTwelveValues value 7", 1006, *v);
-    v = hashMapGet(map, k8);
+  v = hashMapGet(map, k8);
   assertIntEquals("testHashMapTwelveValues value 8", 1007, *v);
-    v = hashMapGet(map, k9);
+  v = hashMapGet(map, k9);
   assertIntEquals("testHashMapTwelveValues value 9", 1008, *v);
-    v = hashMapGet(map, k10);
+  v = hashMapGet(map, k10);
   assertIntEquals("testHashMapTwelveValues value 10", 1009, *v);
-    v = hashMapGet(map, k11);
+  v = hashMapGet(map, k11);
   assertIntEquals("testHashMapTwelveValues value 11", 1010, *v);
-      v = hashMapGet(map, k12);
+  v = hashMapGet(map, k12);
   assertIntEquals("testHashMapTwelveValues value 12", 1011, *v);
   hashMapFree(map);
+  map = NULL;
 }
 
 void testHashMapGetMissingKey()
@@ -171,16 +170,17 @@ void testHashMapGetMissingKey()
   v = hashMapGet(map, k1);
   assertIntEquals("testHashMapGetMissingKey", 1000, *v);
   hashMapFree(map);
+  map = NULL;
 }
 
 void main(int argc, char* argv[])
 {
-  Node * testNode = linkedListCreate(testHashMapOneValue);
-  linkedListAdd(testNode, testHashMapSixValues);
-  linkedListAdd(testNode, testHashMapTwelveValues);
-  linkedListAdd(testNode, testHashMapGetMissingKey);
-  linkedListAdd(testNode, testHashMapRemoveSixValues);
-    
+  Node * head = linkedListCreate(testHashMapOneValue);
+  linkedListAdd(head, testHashMapSixValues);
+  linkedListAdd(head, testHashMapTwelveValues);
+  linkedListAdd(head, testHashMapGetMissingKey);
+  linkedListAdd(head, testHashMapRemoveSixValues);
+  Node * testNode = head;    
   while (testNode != NULL)
   {
     ((void (*)(void))testNode->data)();
@@ -188,5 +188,11 @@ void main(int argc, char* argv[])
     testNode = testNode->next;
   }
   
+  testNode = head;
+  while(testNode != NULL)
+  {
+    testNode = linkedListRemove(head, testNode);
+  }
+   
   return;
 }

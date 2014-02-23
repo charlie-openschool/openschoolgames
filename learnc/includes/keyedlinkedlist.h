@@ -14,7 +14,7 @@ Node * keyedListInsert(Node * node, char * key, void * data);
 
 Node * keyedListCreate(char * key, void * value);
 
-void keyedListRemove(Node * head, char * key);
+Node * keyedListRemove(Node * head, char * key);
 
 Node * keyedListAdd(Node * head, char * key, void * value);
 

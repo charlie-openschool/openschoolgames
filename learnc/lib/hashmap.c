@@ -54,11 +54,11 @@ void hashMapPut(HashMap* hashMap, char * key, void * value)
   Node * * head = hashMapGetHead(hashMap, key);
   if (*head == NULL)
   {
-	*head = (Node*)keyedListCreate(key, value);
+    *head = (Node*)keyedListCreate(key, value);
   }
   else
   {
-	keyedListAdd(*head, key, value);
+    keyedListAdd(*head, key, value);
   }
 }
 
@@ -67,7 +67,7 @@ void hashMapRemove(HashMap* hashMap, char * key)
   Node * * head = hashMapGetHead(hashMap, key);
   if (*head != NULL)
   {
-	keyedListRemove(*head, key);
+    *head = keyedListRemove(*head, key);
   }
 }
 
@@ -80,12 +80,12 @@ Node * * hashMapGetHead(HashMap* hashMap, char * key)
 void * hashMapGet(HashMap* hashMap, char * key)
 {  
   Node * node = *hashMapGetHead(hashMap, key); 
-  while (node != 0)
+  while (node != NULL)
   {
     KeyValue * kv = node->data;
     if (kv != NULL)
     {
-       if (strcmp(kv->key, key) == 0)
+       if (kv->key != NULL && strcmp(kv->key, key) == 0)
 	{
 	  return (long *)kv->value;
 	}
@@ -93,10 +93,10 @@ void * hashMapGet(HashMap* hashMap, char * key)
     } 
     else
     {
-      return 0;
+      return NULL;
     }
   }  
-  return 0;
+  return NULL;
 }
 
 long stringHash(char * s, int primeModulus)
