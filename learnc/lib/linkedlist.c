@@ -56,11 +56,12 @@ Node * linkedListRemove(Node * head, Node * node)
   return previous;
 }
 
-void linkedListInsert(Node * current, void * data)
+Node * linkedListInsert(Node * current, void * data)
 {
   Node * node = linkedListCreate(data);
   node->next = current->next;
   current->next = node;
+  return node;
 }
 
 Node * linkedListAdd(Node * head, void * data)

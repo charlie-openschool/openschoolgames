@@ -10,7 +10,7 @@ typedef struct NODE
 
 Node * linkedListCreate(void * data);
 Node * linkedListRemove(Node * head, Node * node);
-void linkedListInsert(Node * current, void * data);
+Node * linkedListInsert(Node * current, void * data);
 Node * linkedListAdd(Node * head, void * data);
 
 #endif

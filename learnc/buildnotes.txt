@@ -1,4 +1,4 @@
-# compile strings static lib 
+g# compile strings static lib 
 gcc -Wall -c strings.c -I./includes
 
 # move the strings.o file into an archive

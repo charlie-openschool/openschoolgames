@@ -193,6 +193,16 @@ void main(int argc, char* argv[])
   {
     testNode = linkedListRemove(head, testNode);
   }
+
+  printf("%d asserts successful.\n", assertsGetTotal());
+  if (assertsGetFailures() > 0)
+  {
+    printf("%d asserts failed.\n", assertsGetFailures());
+  }
+  else
+  {
+    printf("All tests successful.\n");
+  }
    
   return;
 }
