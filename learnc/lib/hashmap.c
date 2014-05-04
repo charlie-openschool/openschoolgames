@@ -49,6 +49,72 @@ void hashMapFree(HashMap* hashMap)
    free(hashMap);
 }
 
+
+/**
+* Get the head node to a list of all values in the map
+*/
+Node * hashMapGetValueList(HashMap* hashMap)
+{
+   Node * data = hashMap->data;
+   Node * head = NULL;
+   int index = 0;
+   while (index < hashMap->primeModulus)
+   {
+     Node * node = *((Node * *)((Node *)hashMap->data)+index);
+     if (node != NULL)
+     {
+        while (node != NULL)
+        {
+          KeyValue * kv = node->data;
+          if (head == NULL)
+          {
+            head = linkedListCreate(kv->value);
+          }
+          else
+          {
+            linkedListAdd(head, kv->value);
+          }
+          node = node->next;
+        } 
+     } 
+     index++;
+   }
+  return head;
+}
+
+/**
+* Get the head node to a list of all keys in the map
+*/
+Node * hashMapGetKeyList(HashMap* hashMap)
+{
+   Node * data = hashMap->data;
+   Node * head = NULL;
+   int index = 0;
+   while (index < hashMap->primeModulus)
+   {
+     Node * node = *((Node * *)((Node *)hashMap->data)+index);
+     if (node != NULL)
+     {
+        while (node != NULL)
+        {
+          KeyValue * kv = node->data;
+          if (head == NULL)
+          {
+            head = linkedListCreate(kv->key);
+          }
+          else
+          {
+            linkedListAdd(head, kv->key);
+          }
+          node = node->next;
+        } 
+     } 
+     index++;
+   }
+  return head;
+}
+
+
 void hashMapPut(HashMap* hashMap, char * key, void * value)
 {
   Node * * head = hashMapGetHead(hashMap, key);

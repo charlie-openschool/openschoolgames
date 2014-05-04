@@ -1,7 +1,10 @@
 #include <testasserts.h>
 #include <constants.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <strings.h>
+#include <file.h>
 
 int totalAsserts = 0;
 int failures = 0;
@@ -69,4 +72,29 @@ void assertIntEquals(char * message, int expected, int actual)
   {
     printf("%s SUCCESS\n", message);
   }
+}
+
+void assertWriteResults(char * testName)
+{
+  char * results = fileRead("test_results");
+  char * endResults = NULL;
+  printf("%d asserts successful.\n", assertsGetTotal());
+  char * str = malloc(sizeof(char) * 50);
+  if (assertsGetFailures() > 0)
+  {
+    printf("%d asserts failed.\n", assertsGetFailures());
+	sprintf(str, "Test: %s %d asserts failed.\n", testName, assertsGetFailures());
+	endResults = stringConcat(results, str);
+    free(str);	
+  }
+  else
+  {
+    printf("All tests successful.\n");
+	sprintf(str, "Test: %s  successful.\n", testName);
+	endResults = stringConcat(results, str);
+  }
+  fileWrite("test_results", endResults);
+  free(str);
+  free(results);
+  free(endResults);
 }

@@ -211,6 +211,32 @@ int stringEqualsNoCase(char * s1, char * s2)
   }
   return equal;
 }
+
+int stringEndsWith(char * s1, char * s2)
+{
+  int len1 = length(s1);
+  int len2 = length(s2);
+  char * t1;
+  char * t2;
+  int equal = FALSE;
+  if (len1 >= len2)
+  {
+    t1 = s1 + (len1 - len2);
+	t2 = s2;
+    equal = TRUE;
+    int i = 0;
+	while (i < len2)
+	{
+	  if (t1[i] != t2[i])
+	  {
+	    equal = FALSE;
+		break;
+	  }
+	  i++;
+	}
+  }
+  return equal;
+}
 /**
 * Return a new strings from s1 + s2
 * Example stringConcat("hello", "world");

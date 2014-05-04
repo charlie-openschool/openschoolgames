@@ -74,3 +74,13 @@ Node * linkedListAdd(Node * head, void * data)
   return head->next;
 }
 
+void linkedListFree(Node * head)
+{
+  while(head != NULL)
+  {
+    Node * temp = head;
+    head = head->next;
+    free(temp);
+  }
+}
+

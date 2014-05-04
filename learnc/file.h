@@ -1,0 +1,1 @@
+char * fileRead(char * fileName);
