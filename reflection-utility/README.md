@@ -30,7 +30,7 @@ With the ENCODINGS enum we can be sure that we only use valid encodings. The enu
       return encoded;
     }	  
 
-Now we can write cleaner code when we need to use URLEncoder. We no longer need to catch a checked exception and we can be reasonably certain that we will never get a runtime exception, however, it would be nice to be able to force the code into the exception condition duuring testing.
+Now we can write cleaner code when we need to use URLEncoder. We no longer need to catch a checked exception and we can be reasonably certain that we will never get a runtime exception, however, it would be nice to be able to force the code into the exception condition during testing.
 
     EnumModifier.addEnumValue(ENCODINGS.class, "invalidType", "invalidValue");
 	ENCODINGS[] modifiedEnums = ENCODINGS.values();
