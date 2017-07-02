@@ -26,7 +26,7 @@ public class Reader {
 	 * <li>Each row map is keyed by the concatenation of primary column values
 	 * </ol>
 	 * @param primaryKeys -zero based
-	 * @param inputStream
+	 * @param inputStream -csv data
 	 * @return tableMap -keyed by concatenation of primary keys
 	 */
 	public Map<String, Map<String, String>> readCSV(final int[] primaryKeys, final InputStream inputStream) {
