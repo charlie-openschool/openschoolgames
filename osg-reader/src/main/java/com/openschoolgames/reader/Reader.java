@@ -61,9 +61,10 @@ public class Reader {
 		final List<String> lines = new ArrayList<String>();
 		try {
 			final BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-			String line = null;
-			while ((line = reader.readLine()) != null) {
+			String line = reader.readLine();
+			while (line != null) {
 				lines.add(line);
+				line = reader.readLine();
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);

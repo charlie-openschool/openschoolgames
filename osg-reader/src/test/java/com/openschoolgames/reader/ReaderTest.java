@@ -45,4 +45,11 @@ public class ReaderTest {
 		assertEquals("row 1 value 3", "r1v3", table.get("r1v2r1v4").get("h3"));
 		assertEquals("row 2 value 4", "r2v2", table.get("r2v2r2v4").get("h2"));
 	}
+	
+	@Test(expected=RuntimeException.class)
+	public void nullInputStreamTest() {
+		int[] primaryKeys = { 1 };
+		Reader reader = new Reader();
+		reader.readCSV(primaryKeys, null);
+	}
 }
