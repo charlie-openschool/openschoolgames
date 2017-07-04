@@ -26,14 +26,13 @@ public class Evaluator {
 		functions.add("tan");
 		functions.add("exp");
 	}
-	
-	
+
 	private Map<String, Double> valueMap;
-	
-	public void setValueMap(final Map<String, Double> valueMap){
+
+	public void setValueMap(final Map<String, Double> valueMap) {
 		this.valueMap = valueMap;
 	}
-	
+
 	public double evaluate(final String expression) {
 		final Set<String> variables = getVariables(expression);
 		final ExpressionBuilder expressionBuilder = new ExpressionBuilder(expression);
@@ -44,24 +43,24 @@ public class Evaluator {
 		}
 		return ex.evaluate();
 	}
-	
-	private Set<String> getVariables(final String expression){
+
+	private Set<String> getVariables(final String expression) {
 		final Set<String> variables = new HashSet<String>();
 		String trimmedExpression = expression;
-		for (final String operator : operators){
+		for (final String operator : operators) {
 			trimmedExpression = trimmedExpression.replaceAll("\\" + operator, " ");
 		}
-		
-		final String [] candidateVariables = trimmedExpression.split(" ");
-		for (final String candidate : candidateVariables){
-		boolean matchesFunction = false;
-		for (final String function : functions){
-			if (candidate.matches("^" + function)){
-				matchesFunction = true;
-				break;
+
+		final String[] candidateVariables = trimmedExpression.split(" ");
+		for (final String candidate : candidateVariables) {
+			boolean matchesFunction = false;
+			for (final String function : functions) {
+				if (candidate.matches("^" + function)) {
+					matchesFunction = true;
+					break;
+				}
 			}
-		}
-			if (candidate.length() > 0 && !matchesFunction && !candidate.matches("^\\d+")){
+			if (candidate.length() > 0 && !matchesFunction && !candidate.matches("^\\d+")) {
 				variables.add(candidate);
 			}
 		}
