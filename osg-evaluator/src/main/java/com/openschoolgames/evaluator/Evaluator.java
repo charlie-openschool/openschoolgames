@@ -1,12 +1,8 @@
 package com.openschoolgames.evaluator;
 
-import java.io.InputStream;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import com.openschoolgames.reader.Reader;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
