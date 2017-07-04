@@ -61,7 +61,7 @@ public class Evaluator {
 				break;
 			}
 		}
-			if (candidate.length() > 0 && !matchesFunction && !candidate.matches("^\\d")){
+			if (candidate.length() > 0 && !matchesFunction && !candidate.matches("^\\d+")){
 				variables.add(candidate);
 			}
 		}

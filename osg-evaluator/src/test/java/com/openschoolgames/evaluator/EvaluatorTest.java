@@ -44,6 +44,24 @@ public class EvaluatorTest {
 		valueMap.put("y", 3.0);
 		assertEquals("2 + 3", 5, e.evaluate(expression), 0.0001);
 	}
+	
+	@Test
+	public void conversionTest() {
+		Map<String, Double> valueMap = new HashMap<String, Double>();
+		valueMap.put("f", 32.0);
+
+		Evaluator e = new Evaluator();
+		e.setValueMap(valueMap);
+		Reader reader = new Reader();
+		int[] primaryKeys = { 0 };
+		final String csvData = "name,expression\nexpression1,(f - 32) * 5/9";
+		InputStream inputStream = new ByteArrayInputStream(csvData.getBytes(StandardCharsets.UTF_8));
+		final Map<String, Map<String, String>> expressionMap = reader.readCSV(primaryKeys, inputStream);
+		final String expression = expressionMap.get("expression1").get("expression");
+
+		assertEquals("32 degrees F", 0.0, e.evaluate(expression), 0.0001);
+		
+	}
 
 	@Test
 	public void sinSquaredPlusCosSquaredTest() {
