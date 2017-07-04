@@ -1,0 +1,2 @@
+name,expression
+expression1, intercept + A1*C1 + A2*C2
