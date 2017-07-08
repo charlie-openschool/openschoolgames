@@ -9,7 +9,7 @@ import com.openschoolgames.reader.Reader;
 
 public class UnitConversion {
 	
-	public double convert(final String from, final String to, final double value){
+	public double convert(final double value, final String from, final String to){
 		final Reader reader = new Reader();
 		final String name = "temperature_conversions.csv";
 		int[] primaryKeys = { 0 };
