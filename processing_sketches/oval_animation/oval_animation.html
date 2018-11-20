@@ -1,3 +1,19 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Oval Animations</title>
+</head>
+<body>
+<script src=processing.js></script>
+<h1>Oval Animation</h1>
+<div class="oval_animation" >
+<canvas id='oval_animation_canvas' data-processing-sources="./oval_animation.pde" class="oval_animation">
+  <p>Your browser does not support the canvas tag.</p>
+</canvas>
+<div class="source_code" style='background:lightgray'>
+<code>
+<pre>
 OvalAnimation ovalAnimation;
 float xpos;
 float ypos;
@@ -52,3 +68,9 @@ class OvalAnimation {
       ellipse(xpos, ypos, currentWidth, currentHeight);
   }
 }
+
+</pre>
+</code>
+</div>
+</body>
+</html>
