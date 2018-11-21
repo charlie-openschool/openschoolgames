@@ -36,7 +36,7 @@ void draw(){
       if (scaleFactor > 7.0){
         scaleUp = false;
       }
-      if (scaleFactor < .50 ){
+      if (0.50 > scaleFactor){
         stop = true;
       }
       if (scaleUp){

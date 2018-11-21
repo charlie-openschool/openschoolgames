@@ -2,6 +2,7 @@
 <html lang=en>
 <head>
 <meta charset=utf-8>
+<link rel="stylesheet" type="text/css" href="processing-style-sheet.css">
 <title>Square Rotations</title>
 </head>
 <body>
@@ -11,7 +12,7 @@
 <canvas id='square_rotations_canvas' data-processing-sources="./SquareRotations.pde" class="square_rotations">
   <p>Your browser does not support the canvas tag.</p>
 </canvas>
-<div class="source_code" style='background:lightgray'>
+<div class="source_code">
 <code>
 <pre>
 void setup() {
@@ -52,7 +53,7 @@ void draw(){
       if (scaleFactor > 7.0){
         scaleUp = false;
       }
-      if (scaleFactor < .50 ){
+      if (0.50 > scaleFactor){
         stop = true;
       }
       if (scaleUp){
