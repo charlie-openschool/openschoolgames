@@ -9,10 +9,12 @@ int colorCount = 50;
 boolean colorUp = true;
 boolean scaleUp = true;
 boolean stop = false;
+int count = 0;
 
 void draw(){
   if (frameCount % 10 == 0){
     if (!stop){
+      count += 1;
       pushMatrix();
       if (colorCount == 255){
         colorUp = false;
@@ -26,7 +28,7 @@ void draw(){
         colorCount -=1;
       }
       fill(colorCount, 0, 0)
-      translate(350 + cos(frameCount) * 100, 300 + sin(frameCount) * 100);
+      translate(350 + cos(count) * 100, 310 + sin(count) * 100);
       rotate(radians(30 + frameCount));
       scale(scaleFactor);
       rect(0, 0, 20, 20);
@@ -36,7 +38,7 @@ void draw(){
       if (scaleFactor > 7.0){
         scaleUp = false;
       }
-      if (scaleFactor < .50 ){
+      if (0.50 > scaleFactor){
         stop = true;
       }
       if (scaleUp){

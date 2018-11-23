@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<link rel="stylesheet" type="text/css" href="../processing-style-sheet.css">
+<title>Smooth</title>
+</head>
+<body>
+<script src='../processing.js'></script>
+<h1>Smooth</h1>
+<div class="canvas_div" >
+<canvas id='smooth_canvas' data-processing-sources="./Smooth.pde" class="smooth">
+  <p>Your browser does not support the canvas tag.</p>
+</canvas>
+<div class="source_code"> 
+<code>
+<pre>
+void setup() {
+  size(150, 150);
+  background(255);
+  smooth();  
+}
+
+void draw(){
+  pushMatrix();
+  fill(200, 0, 0)
+  translate(10, 10);
+  rotate(radians(30));
+  scale(1.0);
+  rect(0, 0, 20, 20);
+  popMatrix();
+}
+</pre>
+</code>
+</div>
+<div class='img_div'>
+<img src='../images/not_smooth.jpg' height='100' width='100' alt='image rendered without a call to smooth'/>
+</div>
+<div>
+An image rendered without a call to smooth() has blocky staircase like pixels on angled lines.
+</div>
+<div class='img_div'>
+<img src='../images/smooth.jpg' alt='image rendered with a call to smooth' height='100' width='100'/>
+</div>
+<div>
+An image rendered with a call to smooth() still has staircase like pixels on angled lines but the blockiness is softer.
+</div>
+<div>
+Newer versions of Processing do not require explicit calls to smooth(). 
+</div>
+<a href='https://processing.org/reference/smooth_.html'>Processing reference for smooth</a>
+</body>
+</html>
