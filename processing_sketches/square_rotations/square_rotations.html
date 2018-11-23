@@ -14,57 +14,55 @@
 </canvas>
 <div class="source_code">
 <code>
-<pre>
-void setup() {
-  size(600, 600);
-  background(255);
-  smooth();  
-}
-
-float scaleFactor = 2.0;
-int colorCount = 50;
-boolean colorUp = true;
-boolean scaleUp = true;
-boolean stop = false;
-
-void draw(){
-  if (frameCount % 10 == 0){
-    if (!stop){
-      pushMatrix();
-      if (colorCount == 255){
-        colorUp = false;
-      }
-      if (colorCount == 50){
-        colorUp = true;
-      }
-      if (colorUp){
-        colorCount += 1;
-      } else {
-        colorCount -=1;
-      }
-      fill(colorCount, 0, 0)
-      translate(300, 250);
-      rotate(radians(30 + frameCount));
-      scale(scaleFactor);
-      rect(0, 0, 20, 20);
-      popMatrix();
-    }
-    if (frameCount % 100 == 0){
-      if (scaleFactor > 7.0){
-        scaleUp = false;
-      }
-      if (0.50 > scaleFactor){
-        stop = true;
-      }
-      if (scaleUp){
-        scaleFactor += .15;
-      } else {
-        scaleFactor -= .15;
-      }
-    }
-  }
-}
-</pre>
+void setup() {<br>
+  size(600, 600);<br>
+  background(255);<br>
+  <a href='./procdoc/smooth.html'>smooth()</a>;<br>
+}<br>
+<br>
+float scaleFactor = 2.0;<br>
+int colorCount = 50;<br>
+boolean colorUp = true;<br>
+boolean scaleUp = true;<br>
+boolean stop = false;<br>
+<br>
+void draw(){<br>
+  if (frameCount % 10 == 0){<br>
+    if (!stop){<br>
+      pushMatrix();<br>
+      if (colorCount == 255){<br>
+        colorUp = false;<br>
+      }<br>
+      if (colorCount == 50){<br>
+        colorUp = true;<br>
+      }<br>
+      if (colorUp){<br>
+        colorCount += 1;<br>
+      } else {<br>
+        colorCount -=1;<br>
+      }<br>
+      fill(colorCount, 0, 0)<br>
+      translate(300, 250);<br>
+      rotate(radians(30 + frameCount));<br>
+      scale(scaleFactor);<br>
+      rect(0, 0, 20, 20);<br>
+      popMatrix();<br>
+    }<br>
+    if (frameCount % 100 == 0){<br>
+      if (scaleFactor > 7.0){<br>
+        scaleUp = false;<br>
+      }<br>
+      if (0.50 > scaleFactor){<br>
+        stop = true;<br>
+      }<br>
+      if (scaleUp){<br>
+        scaleFactor += .15;<br>
+      } else {<br>
+        scaleFactor -= .15;<br>
+      }<br>
+    }<br>
+  }<br>
+}<br>
 </code>
 </div>
 </body>
