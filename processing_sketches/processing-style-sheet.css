@@ -5,7 +5,16 @@ padding:7px;
   border-color:gray;
   border-width:5px;
 }
-
-a {
-    text-decoration: none;
+.source_line {
+}
+.source_line1 {
+}
+.source_line2 {
+ text-indent: 2em;
+}
+.source_line3 {
+ text-indent: 4em;
+}
+.source_line4 {
+ text-indent: 6em;
 }
