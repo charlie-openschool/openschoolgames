@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<link rel="stylesheet" type="text/css" href="processing-style-sheet.css">
+<title>Epicycloid</title>
+</head>
+<body>
+<script src=processing.js></script>
+<h1>Epicycloid</h1>
+<div class="epicycloid">
+<canvas id="epicycloid" data-processing-sources="./epicycloid.pde ./Inputs.pde" class="epicycloid">
+  <p>Your browser does not support the canvas tag.</p>
+</canvas>
+<div class="inputs">
+<textarea id="a_input">a = 30</textarea></div>
+<textarea id="b_input">b = 13</textarea></div>
+<input type="button" value="clear" onclick="setClear()"/></div>
+</div>
+<script>
+var bound = false;
+var clear = false;
+function bindInputs() {
+  var pjs = Processing.getInstanceById('epicycloid');
+  if(pjs!=null) {
+    pjs.bindInputsJS(this);
+    bound = true;
+  }
+  if(!bound) setTimeout(bindInputs, 250); 
+}
+
+function getAValue(){
+  return getValue(document.getElementById("a_input").value);
+}
+
+function getBValue(){
+  return getValue(document.getElementById("b_input").value);
+}
+
+function getCanClear(){
+  var currentClear = clear;
+  clear = false;
+  return currentClear;
+}
+
+function setClear(){
+  clear = true;
+} 
+
+function getValue(value){
+return parseInt(value.replace(/\D/g,''));
+} 
+
+bindInputs();
+</script>
+<div class="links">
+<ul>
+<li><a href="http://mathworld.wolfram.com/Epitrochoid.html">Mathworld Epitrochoid</a></li>
+<li><a href="https://github.com/charlie-openschool/openschoolgames/tree/master/processing_sketches/epicycloid">Source code at github.com/charlie-openschool</a></li>
+</ul>
+</div>
+<div class="source_code">
+<code>
+<div class="source_line">interface Inputs {</div>
+<div class="source_line2">  float getAValue();</div>
+<div class="source_line2">  float getBValue();</div>
+<div class="source_line2">  boolean getCanClear();</div>
+<div class="source_line">}</div>
+<div class="source_line"></div>
+<div class="source_line">Inputs inputs;</div>
+<div class="source_line"></div>
+<div class="source_line">void setup(){</div>
+<div class="source_line2">size(400, 400);</div>
+<div class="source_line2">background(255);</div>
+<div class="source_line2">stroke(100,0,0);</div>
+<div class="source_line2">fill(100,0,0);</div>
+<div class="source_line">}</div>
+<div class="source_line"></div>
+<div class="source_line">float theta = 0.0;</div>
+<div class="source_line">String currentDescription = "";</div>
+<div class="source_line">void draw() {</div>
+  <div class="source_line2">if (this.inputs != null){</div>
+    <div class="source_line3">if (this.inputs.getCanClear()){</div>
+      <div class="source_line4">theta = 0.0;</div>
+      <div class="source_line4">background(255);</div>
+    <div class="source_line3">}</div>
+    <div class="source_line3">theta = theta + .02;</div>
+    <div class="source_line3">float a = this.inputs.getAValue();</div>
+    <div class="source_line3">float b = this.inputs.getBValue();</div>
+    <div class="source_line3">printDescription(a, b);</div>
+    <div class="source_line3">float x = (a+b)*cos(theta) - (b*cos(((a+b)/b)*theta));</div>
+    <div class="source_line3">float y = (a+b)*sin(theta) - (b*sin(((a+b)/b)*theta));</div>
+    <div class="source_line3">translate(150, 150);</div>
+    <div class="source_line3">point(x, y);</div>
+  <div class="source_line2">}</div>
+<div class="source_line">}</div>
+<div class="source_line"></div>
+<div class="source_line">void printDescription(float a, float b){</div>
+    <div class="source_line2">String description = "";</div>
+    <div class="source_line2">if (a/b == 1.0){</div>
+      <div class="source_line3">description = "a: " + a + " b: " + b + " Cardioid k: " + a/b;</div>
+    <div class="source_line2">} else if (a % b == 0){</div>
+     <div class="source_line3">description = "a: " + a + " b: " + b + " k: " + a/b;</div>
+   <div class="source_line2">} else if (b % a == 0){</div>
+     <div class="source_line3">description = "a: " + a + " b: " + b + " k: " + b/a;</div>
+   <div class="source_line2">}</div>
+   <div class="source_line2">if (currentDescription != description){</div>
+     <div class="source_line3">currentDescription = description;</div>
+     <div class="source_line3">println(description);</div>
+   <div class="source_line2">}</div>
+<div class="source_line">}</div>
+<div class="source_line"></div>
+<div class="source_line">void bindInputsJS(Inputs inputs){</div>
+  <div class="source_line2">this.inputs = inputs;</div>
+<div class="source_line">}</div>
+</code>
+</body>
+</html>
