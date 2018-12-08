@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<link rel="stylesheet" type="text/css" href="processing-style-sheet.css">
+<title>Hypocycloid Web</title>
+</head>
+<body>
+<script src=processing.js></script>
+<h1>Hypocycloid Web</h1>
+<div class="hypocycloidweb">
+<canvas id="hypocycloidweb" data-processing-sources="./hypocycloidweb.pde" class="hypocycloidweb">
+  <p>Your browser does not support the canvas tag.</p>
+</canvas>
+<script>
+
+</script>
+<div class="links">
+<ul>
+<li><a href="http://mathworld.wolfram.com/Hypocycloid.html">Mathworld Hypocycloid</a></li>
+<li><a href="https://github.com/charlie-openschool/openschoolgames/tree/master/processing_sketches/hypocycloidweb">Source code at github.com/charlie-openschool</a></li>
+</ul>
+</div>
+<div class="source_code">
+<code>
+<div class="source_line">void setup() {</div>
+<div class="source_line2">size(600, 600);</div>
+<div class="source_line2">background(150);</div>
+<div class="source_line">}</div>
+<div class="source_line"></div>
+<div class="source_line">int b = 5;</div>
+<div class="source_line">float theta = 0.0;</div>
+<div class="source_line">int i = 0;</div>
+<div class="source_line"></div>
+<div class="source_line">void draw() {  </div>
+<div class="source_line2">theta = theta + .01;</div>
+<div class="source_line2">a = 15 + (i * 5);</div>
+<div class="source_line2">if ( a > 220){</div>
+<div class="source_line3">stop();</div>
+<div class="source_line2">}</div>
+<div class="source_line2">if (theta > 6.243){</div>
+<div class="source_line3">theta = 0.0;</div>
+<div class="source_line3">i = i + 1;</div>
+<div class="source_line2">}</div>
+<div class="source_line2">float x = (a-b)*cos(theta) + (b*cos(((a-b)/b)*theta));</div>
+<div class="source_line2">float y = (a-b)*sin(theta) - (b*sin(((a-b)/b)*theta));</div>
+<div class="source_line2">translate(250, 250);</div>
+<div class="source_line2">int red = 0;</div>
+<div class="source_line2">if ( x > 0){</div>
+<div class="source_line3">red = x;</div>
+<div class="source_line2">} else {</div>
+<div class="source_line3">red = x * -1;</div>
+<div class="source_line2">}</div>
+<div class="source_line2">int blue = 0;</div>
+<div class="source_line2">if ( y > 0){</div>
+<div class="source_line3">blue = y;</div>
+<div class="source_line2">} else {</div>
+<div class="source_line3">blue = y * -1;</div>
+<div class="source_line2">}</div>
+<div class="source_line2">stroke(red, 0, blue);</div>
+<div class="source_line2">point(x, y);</div>
+}
+
+</code>
+</div>
+</body>
+</html>
