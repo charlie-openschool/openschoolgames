@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <link rel="stylesheet" type="text/css" href="processing-style-sheet.css">
+    <title>Lissajous</title>
+  </head>
+  <body>
+    <script src=processing.js></script>
+    <h1>Lissajous</h1>
+    <div class="lissajous">
+      <canvas id="lissajous" data-processing-sources="./lissajous.pde ./TrigonometricInputs.pde" class="lissajous">
+        <p>Your browser does not support the canvas tag.</p>
+      </canvas>
+      <div class="inputs">
+        <div><textarea id="x_period_input">x period = 3.0</textarea></div>
+        <div><textarea id="y_period_input">y period = 5.0</textarea></div>
+        <div><textarea id="x_amplitude_input">x amplitude = 100</textarea></div>
+        <div><textarea id="y_amplitude_input">y amplitude = 100</textarea></div>
+      </div>
+    </div>
+    <script src="trigonometric_inputs.js"></script>
+    <script>
+      trigonometricInputsJS.bindInputs("lissajous");
+    </script>
+    <div class="links">
+      <ul>
+        <li><a href="https://www.mathcurve.com/courbes2d.gb/lissajous/lissajous.shtml">Math Curve Lissajous</a></li>
+        <li><a href="http://mathworld.wolfram.com/LissajousCurve.html">Mathworld Lissajous Curve</a></li>
+        <li><a href="https://github.com/charlie-openschool/openschoolgames/tree/master/processing_sketches/lissajous">Source code at github.com/charlie-openschool</a></li>
+      </ul>
+    </div>
+    <div class="source_code">
+    </div>
+  </body>
+</html>
