@@ -31,6 +31,52 @@
       </ul>
     </div>
     <div class="source_code">
+    <code>
+<div class="source_line">TrigonometricInputs inputs;</div>
+<div class="source_line"></div>
+<div class="source_line">void setup() {</div>
+<div class="source_line2">  size(300, 300);</div>
+<div class="source_line2">  background(155);</div>
+<div class="source_line2">  frameRate(15);</div>
+<div class="source_line">}</div>
+<div class="source_line"></div>
+<div class="source_line">void drawCurve(float xAmplitude, float yAmplitude, float xPeriod, float yPeriod, float phaseShift){</div>
+<div class="source_line2">  for (float theta = 0; theta < TWO_PI; theta += 0.01){</div>
+<div class="source_line3">    float x = xAmplitude * sin(xPeriod * theta);</div>
+<div class="source_line3">    float y = yAmplitude * sin(yPeriod * theta + phaseShift);</div>
+<div class="source_line3">    ellipse(x, y, 5, 5);</div>
+<div class="source_line2">  }</div>
+<div class="source_line">}</div>
+<div class="source_line"></div>
+<div class="source_line">float phaseShift = 0;</div>
+<div class="source_line"></div>
+<div class="source_line">void draw() {</div>
+<div class="source_line2">  background(155);</div>
+<div class="source_line2">  translate(150,150);</div>
+<div class="source_line2">  float xPeriod = 3;</div>
+<div class="source_line2">  float yPeriod = 5;</div>
+<div class="source_line2">  float xAmplitude = 100;</div>
+<div class="source_line2">  float yAmplitude = 100;</div>
+<div class="source_line2">  if (this.inputs != null){</div>
+<div class="source_line3">    xPeriod = this.inputs.getXPeriod();</div>
+<div class="source_line3">    yPeriod = this.inputs.getYPeriod();</div>
+<div class="source_line3">    xAmplitude = this.inputs.getXAmplitude();</div>
+<div class="source_line3">    yAmplitude = this.inputs.getYAmplitude();</div>
+<div class="source_line2">  }</div>
+<div class="source_line"></div>
+<div class="source_line2">  phaseShift += .01;</div>
+<div class="source_line2">  adjustColors(phaseShift);</div>
+<div class="source_line2">  drawCurve(xAmplitude, yAmplitude, xPeriod, yPeriod, phaseShift);</div>
+<div class="source_line">}</div>
+<div class="source_line"></div>
+<div class="source_line">void adjustColors(float r){</div>
+<div class="source_line2">  stroke(sin(r) * 128 + 128, 50, sin(r * PI/2)*128 + 128, 200);</div>
+<div class="source_line">}</div>
+<div class="source_line"></div>
+<div class="source_line">void bindInputsJS(TrigonometricInputs inputs){</div>
+<div class="source_line2">  this.inputs = inputs;</div>
+<div class="source_line">}</div>
+</code>
     </div>
   </body>
 </html>

@@ -1,4 +1,4 @@
-TrigonometricInputsJSInputs inputs;
+TrigonometricInputs inputs;
 
 void setup() {
     size(300, 300);
@@ -39,6 +39,6 @@ void adjustColors(float r){
   stroke(sin(r) * 128 + 128, 50, sin(r * PI/2)*128 + 128, 200);
 }
 
-void bindInputsJS(TrigonometricInputsInputs inputs){
+void bindInputsJS(TrigonometricInputs inputs){
   this.inputs = inputs;
 }
