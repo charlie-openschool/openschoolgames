@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <link rel="stylesheet" type="text/css" href="processing-style-sheet.css">
+  <title>Mandelbrot</title>
+</head>
+<body>
+  <script src=processing_1-4.js></script>
+  <h1>Mandelbrot</h1>
+  <div class="mandelbrot">
+    <canvas id="mandelbrot" data-processing-sources="./mandelbrot.pde" class="mandelbrot">
+      <p>Your browser does not support the canvas tag.</p>
+    </canvas>
+  </div>
+<div class="links">
+<ul>
+<li><a href="http://mathworld.wolfram.com/MandelbrotSet.html">Mathworld Mandelbrot Set</a></li>
+<li><a href="https://github.com/charlie-openschool/openschoolgames/tree/master/processing_sketches/mandelbrot">Source code at github.com/charlie-openschool</a></li>
+</ul>
+</div>
+<div class="source_code">
+    <code>
+      <div class="source_line">void setup() {</div>
+      <div class="source_line2">  size(1000, 1000);</div>
+      <div class="source_line2">  background(255);</div>
+      <div class="source_line">}</div>
+      <div class="source_line"></div>
+      <div class="source_line">void draw() {</div>
+      <div class="source_line2">    translate(500, 500);	</div>
+      <div class="source_line2">  float r = 0.0;</div>
+      <div class="source_line2">  float i = 0.0;</div>
+      <div class="source_line2">  for(int x = -600; x < 400; x++){</div>
+      <div class="source_line3">    r = 0.007 * x;</div>
+      <div class="source_line3">    for(int y = -600; y < 400; y++){</div>
+      <div class="source_line4">      i = 0.007 * y;</div>
+      <div class="source_line4">      stroke(150); // in the set</div>
+      <div class="source_line4">      float real = r;</div>
+      <div class="source_line4">      float complex = i;</div>
+      <div class="source_line4">      for (int t = 0; t < 500; t++){</div>
+      <div class="source_line5">        float tr = real * real - (complex * complex);</div>
+      <div class="source_line5">        float ti = 2 * real * complex;</div>
+      <div class="source_line5">        if (tr > 500 || tr < -500 || ti > 500 || ti < -500){</div>
+      <div class="source_line6">          stroke(abs(tr)%255, 50, abs(ti)%255);</div>
+      <div class="source_line6">          break;</div>
+      <div class="source_line5">        }</div>
+      <div class="source_line5">        real = tr;</div>
+      <div class="source_line5">        complex = ti;</div>
+      <div class="source_line5">        real = real + r;</div>
+      <div class="source_line5">        complex = complex + i</div>
+      <div class="source_line4">      }</div>
+      <div class="source_line4">      point(x, y);</div>
+      <div class="source_line3">    }</div>
+      <div class="source_line2">  }</div>
+      <div class="source_line2">  exit();</div>
+      <div class="source_line">}</div>
+    </code>
+  </div>
+  </body>
+</html>
