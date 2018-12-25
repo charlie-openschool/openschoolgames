@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <link rel="stylesheet" type="text/css" href="processing-style-sheet.css">
+    <title>Fern</title>
+  </head>
+  <body>
+    <script src=processing.js></script>
+    <h1>Barnsley Fern</h1>
+    <div class="fern">
+      <canvas id="fern" data-processing-sources="./fern.pde" class="fern">
+        <p>Your browser does not support the canvas tag.</p>
+      </canvas>
+    </div>
+    <div class="links">
+      <ul>
+        <li><a href="https://en.wikipedia.org/wiki/Barnsley_fern">Wikipedia Barnsley Fern</a></li>
+        <li><a href="http://mathworld.wolfram.com/BarnsleysFern.html">Mathworld Barnsley Fern</a></li>
+        <li><a href="https://github.com/charlie-openschool/openschoolgames/tree/master/processing_sketches/fern">Source code at github.com/charlie-openschool</a></li>
+      </ul>
+    </div>
+    <div class="source_code">
+    <code>
+<div class="source_line">// Barnsley Fern for Processing 3.4</div>
+<div class="source_line"></div>
+<div class="source_line">void setup() {</div>
+  <div class="source_line2">size(800, 800);</div>
+  <div class="source_line2">background(0);</div>
+<div class="source_line">}</div>
+<div class="source_line"></div>
+<div class="source_line">void drawPoint(float x, float y) {</div>
+  <div class="source_line2">// map x and y to canvas width and height</div>
+  <div class="source_line2">float px = map(x, -2.1820, 2.6558, 0, width);</div>
+  <div class="source_line2">float py = map(y, 0, 9.9983, height, 0);</div>
+  <div class="source_line2">point(px, py);</div>
+<div class="source_line">}</div>
+<div class="source_line"></div>
+<div class="source_line">// the next value of x is based on the</div>
+<div class="source_line">// old x and y values</div>
+<div class="source_line">float nextX(float x, float y, float r) {</div>
+  <div class="source_line2">float nextX = 0;</div>
+  <div class="source_line2">if (r < 0.01) {</div>
+    <div class="source_line3">return  0;</div>
+  <div class="source_line2">} else if (r < 0.86) {</div>
+    <div class="source_line3">return 0.85 * x + 0.04 * y;</div>
+  <div class="source_line2">} else if (r < 0.93) {</div>
+    <div class="source_line3">return  0.20 * x - 0.26 * y;</div>
+  <div class="source_line2">} else {</div>
+    <div class="source_line3">return -0.15 * x + 0.28 * y;</div>
+  <div class="source_line2">}</div>
+<div class="source_line">}</div>
+<div class="source_line"></div>
+<div class="source_line">// the next value of y is based on the </div>
+<div class="source_line">// old x and y values</div>
+<div class="source_line">float nextY(float x, float y, float r) {</div>
+  <div class="source_line2">if (r < 0.01) {</div>
+    <div class="source_line3">return 0.16 * y;</div>
+  <div class="source_line2">} else if (r < 0.86) {</div>
+    <div class="source_line3">return -0.04 * x + 0.85 * y + 1.6;</div>
+  <div class="source_line2">} else if (r < 0.93) {</div>
+    <div class="source_line3">return 0.23 * x + 0.22 * y + 1.6;</div>
+  <div class="source_line2">} else {</div>
+    <div class="source_line3">return 0.26 * x + 0.24 * y + 0.44;</div>
+  <div class="source_line2">}</div>
+<div class="source_line">}</div>
+<div class="source_line"></div>
+<div class="source_line">// global variables that </div>
+<div class="source_line">// hold our state across</div>
+<div class="source_line">// calls to draw</div>
+<div class="source_line">int cnt = 0;</div>
+<div class="source_line">int theta = 0;</div>
+<div class="source_line">float x = 0.0</div>
+<div class="source_line">float y = 0.0;</div>
+<div class="source_line"></div>
+<div class="source_line">void draw() {</div>
+  <div class="source_line2">stroke(34, 239, 34);</div>
+  <div class="source_line2">strokeWeight(1);</div>
+  <div class="source_line2">cnt++;</div>
+  <div class="source_line2">// after 400 calls to draw</div>
+  <div class="source_line2">// rotate the canvas </div>
+  <div class="source_line2">if (cnt > 400){</div>
+    <div class="source_line3">cnt = 0;</div>
+    <div class="source_line3">theta++;</div>
+  <div class="source_line2">}</div>
+<div class="source_line">  </div>
+  <div class="source_line2">if (theta > 16){</div>
+    <div class="source_line3">exit();</div>
+  <div class="source_line2">}</div>
+<div class="source_line">  </div>
+  <div class="source_line2">translate(350,350);</div>
+<div class="source_line"></div>
+  <div class="source_line2">rotate(3.14159/4 * theta);</div>
+  <div class="source_line2">if (theta > 8){</div>
+    <div class="source_line3">scale(0.4);</div>
+  <div class="source_line2">} else {</div>
+    <div class="source_line3">scale(0.2);</div>
+  <div class="source_line2">}</div>
+<div class="source_line"></div>
+  <div class="source_line2">// draw in bursts of 100</div>
+  <div class="source_line2">for (int i = 0; i < 100; i++) {</div>
+    <div class="source_line3">float r = random(1);</div>
+    <div class="source_line3">float x1 = nextX(x, y, r);</div>
+	<div class="source_line3">float y1 = nextY(x, y, r);</div>
+	<div class="source_line3">drawPoint(x, y);</div>
+	<div class="source_line3">x = x1;</div>
+	<div class="source_line3">y = y1;</div>
+  <div class="source_line2">}</div>
+<div class="source_line">}</div>
+</code>
+</div>
+  </body>
+</html>
