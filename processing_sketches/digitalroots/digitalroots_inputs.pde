@@ -1,0 +1,3 @@
+interface Inputs {
+  List getNumberList();
+}
