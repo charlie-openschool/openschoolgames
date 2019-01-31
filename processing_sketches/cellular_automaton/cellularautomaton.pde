@@ -59,7 +59,6 @@ return;
         fill(0);
         ellipse(5*k +12, m*5+44, r, r);	
       }
-     // rect(5*k +12, m*5+44, 5, 5);
       if (bits[0]){
         if (!elements[k - 1] && !elements[k] && !elements[k + 1]){
           inprogressElements[k] = true;
