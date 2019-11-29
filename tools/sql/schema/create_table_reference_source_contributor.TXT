@@ -1,0 +1,54 @@
+create table reference_source_contributor (
+reference_source_contributor_id BIGINT NOT NULL AUTO_INCREMENT,
+reference_source_uuid_bin binary(16) NOT NULL,
+reference_source_uuid_text varchar(36) generated always as
+(
+ insert(
+   insert(
+     insert(
+       insert(
+         hex(
+           concat(substr(reference_source_uuid_bin,5,4),substr(reference_source_uuid_bin,3,2),
+                  substr(reference_source_uuid_bin,1,2),substr(reference_source_uuid_bin,9,8))
+         ),
+         9,0,'-'),
+     14,0,'-'),
+   19,0,'-'),
+ 24,0,'-')
+) virtual,
+contributor_uuid_bin binary(16) NOT NULL,
+contributor_uuid_text varchar(36) generated always as
+(
+ insert(
+   insert(
+     insert(
+       insert(
+         hex(
+           concat(substr(contributor_uuid_bin,5,4),substr(contributor_uuid_bin,3,2),
+                  substr(contributor_uuid_bin,1,2),substr(contributor_uuid_bin,9,8))
+         ),
+         9,0,'-'),
+     14,0,'-'),
+   19,0,'-'),
+ 24,0,'-')
+) virtual,
+contributor_type_uuid_bin binary(16),
+contributor_type_uuid_text varchar(36) generated always as
+(
+ insert(
+   insert(
+     insert(
+       insert(
+         hex(
+           concat(substr(contributor_type_uuid_bin,5,4),substr(contributor_type_uuid_bin,3,2),
+                  substr(contributor_type_uuid_bin,1,2),substr(contributor_type_uuid_bin,9,8))
+         ),
+         9,0,'-'),
+     14,0,'-'),
+   19,0,'-'),
+ 24,0,'-')
+) virtual,
+PRIMARY KEY (reference_source_contributor_id),
+INDEX (contributor_type_uuid_bin),
+INDEX (reference_source_uuid_bin),
+INDEX (contributor_uuid_bin));

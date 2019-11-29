@@ -1,0 +1,23 @@
+use great_war;
+create table reference_source (
+reference_source_id BIGINT NOT NULL AUTO_INCREMENT,
+uuid_bin binary(16),
+uuid_text varchar(36) generated always as
+(
+ insert(
+   insert(
+     insert(
+       insert(
+         hex(
+           concat(substr(uuid_bin,5,4),substr(uuid_bin,3,2),
+                  substr(uuid_bin,1,2),substr(uuid_bin,9,8))
+         ),
+         9,0,'-'),
+     14,0,'-'),
+   19,0,'-'),
+ 24,0,'-')
+) virtual,
+source_name varchar(200),
+PRIMARY KEY (reference_source_id),
+INDEX (source_name(20)),
+INDEX (uuid_bin));

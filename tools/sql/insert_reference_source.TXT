@@ -1,0 +1,9 @@
+set @u = unhex(replace(uuid(),'-',''));
+ 
+insert into reference_source (uuid_bin,source_name)
+values
+(
+ concat(substr(@u, 7, 2), substr(@u, 5, 2),
+        substr(@u, 1, 4), substr(@u, 9, 8)),
+ 'The First World War'
+);

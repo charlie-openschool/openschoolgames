@@ -1,0 +1,5 @@
+insert into reference_source_contributor (reference_source_uuid_bin, contributor_uuid_bin,
+contributor_type_uuid_bin) values (
+ (select uuid_bin from reference_source where source_name = 'The First World War'),
+ (select uuid_bin from contributor where contributor_name = 'Hew Strachan'),
+ (select uuid_bin from contributor_type where type_name = 'author'));
