@@ -1,9 +1,10 @@
-set @u = unhex(replace(uuid(),'-',''));
- 
-insert into contributor (uuid_bin, contributor_name)
+set @u = (select uuid_bin from contributor where contributor_name = 'Tony Ashworth'); 
+set @t = (select uuid_text from contributor where contributor_name = 'Tony Ashworth'); 
+
+select @t;
+
+insert into agnomen (uuid_bin, agnomen)
 values
-(
- concat(substr(@u, 7, 2), substr(@u, 5, 2),
-        substr(@u, 1, 4), substr(@u, 9, 8)),
- 'Erich Maria Remarque'
+( @u,
+ 'ASHWORTH'
 );

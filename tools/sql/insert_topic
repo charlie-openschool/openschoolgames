@@ -1,0 +1,9 @@
+set @u = unhex(replace(uuid(),'-',''));
+ 
+insert into topic (uuid_bin,topic)
+values
+(
+ concat(substr(@u, 7, 2), substr(@u, 5, 2),
+        substr(@u, 1, 4), substr(@u, 9, 8)),
+ 'The Great War'
+);
