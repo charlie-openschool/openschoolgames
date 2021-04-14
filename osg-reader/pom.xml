@@ -14,4 +14,42 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>com.openschoolgames</id>
+      <url>http://3.143.215.95:8080/repository/com.openschoolgames/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <repositories>
+    <repository>
+      <id>com.openschoolgames</id>
+      <name>osg</name>
+      <url>http://3.143.215.95:8080/repository/com.openschoolgames/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>com.openschoolgames</id>
+      <name>osg</name>
+      <url>http://3.143.215.95:8080/repository/com.openschoolgames/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+    <scm>
+      <url>https://github.com/charlie-openschool/openschoolgames</url>
+      <connection>scm:git:ssh://git@github.com/charlie-openschool/openschoolgames.git</connection>
+      <developerConnection>scm:git:ssh://git@github.com/charlie-openschool/openschoolgames.git</developerConnection>
+    </scm>
 </project>
